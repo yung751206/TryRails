@@ -1,10 +1,13 @@
 Demo::Application.routes.draw do
   resources :people
+  resources :events do
+    resources :attendees, :controller => 'event_attendees'
+    resource :location, :controller => 'event_locations'
+  end 
 
   get "welcome/say_hello" => "welcome#say"
   get "welcome" => "welcome#index"
   root :to => "welcome#index"
-  match ':controller(/:action(/:id(.:format)))', :via => :all
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
